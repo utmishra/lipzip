@@ -29,7 +29,7 @@
 				'Content-Type': 'application/json',
 				'X-Language': selectedLanguage
 			},
-			body: requestCode
+			body: JSON.stringify(requestCode)
 		}).catch((requestError) => {
 			error = requestError.message;
 		});
@@ -37,10 +37,6 @@
 		if (response.ok) {
 			const { redactedCode: newRedactedCode } = await response.json();
 			redactedCode = newRedactedCode;
-		} else {
-			console.error('Failed to redact code.');
-			const { message: errorMessage } = await response.json();
-			error = errorMessage;
 		}
 	}
 </script>
